@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Welcome - Smart Movie Booking</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: url('{{ url_for("static", filename="1.jpg") }}');
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: flex-start; 
+      align-items: center;
+      color: #ffffff;
+      overflow: hidden;
+    }
+
+    .welcome-container {
+      text-align: center;
+      max-width: 750px;
+      padding: 40px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 30px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+      margin-left: 100px;
+      margin-top: 100px;
+      margin-bottom: 8px;
+      animation: fadeIn 2s ease;     
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      color: #ffeb3b;
+    }
+
+    p {
+      font-size: 30px;
+      margin-bottom: 30px;
+      color: #e0e0e0;
+    }
+
+    a.button {
+      display: inline-block;
+      padding: 14px 30px;
+      font-size: 25px;
+      font-weight: bold;
+      color: #ffffff;
+      background: #ff9800;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 0 15px #ff9800;
+      transition: background 0.3s, transform 0.2s;
+      animation: pulse 2s infinite;
+    }
+
+    a.button:hover {
+      background: #f57c00;
+      transform: scale(1.05);
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 15px #ff9800; }
+      50% { box-shadow: 0 0 30px #ffa726; }
+      100% { box-shadow: 0 0 15px #ff9800; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .welcome-container {
+        margin-left: 90px;
+        margin-right: 80px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      p {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="welcome-container">
+    <h1>Welcome to Smart Movie Ticket Booking</h1>
+    <p>Get ready to experience the hassle-free, smart, and fast movie ticket booking!</p>
+    <a href="{{ url_for('register') }}" class="button">Enter</a>
+  </div>
+</body>
+</html>

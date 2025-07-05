@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment - Smart Movie Booking</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #141e30, #243b55);
+      color: #fff;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .payment-box {
+      background-color: rgba(0, 0, 0, 0.75);
+      padding: 30px 40px;
+      border-radius: 16px;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    h2 {
+      color: #ffc107;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .amount {
+      font-size: 20px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      font-size: 16px;
+      margin: 15px 0 5px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 6px;
+      border: none;
+      margin-bottom: 15px;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background-color: #ff9800;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ff9800;
+    }
+
+    button:hover {
+      background-color: #e67e22;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="payment-box">
+    <h2>Payment Details</h2>
+    <div class="amount">
+      💰 {{ seats.split(',')|length }} seat(s) for "<b>{{ movie }}</b>"<br>
+      Total Amount to Pay: ₹<b>{{ seats.split(',')|length * price|int }}</b>
+    </div>
+
+    <label for="paymentMode">Select Payment Method:</label>
+    <select id="paymentMode">
+      <option value="">-- Choose --</option>
+      <option value="credit">Credit Card</option>
+      <option value="debit">Debit Card</option>
+      <option value="upi">UPI</option>
+      <option value="netbanking">Net Banking</option>
+    </select>
+
+    <div id="cardFields" class="hidden">
+      <label>Card Number:</label>
+      <input type="text" id="cardNumber" placeholder="XXXX-XXXX-XXXX-XXXX" />
+      <label>Card Holder Name:</label>
+      <input type="text" id="cardHolder" placeholder="Full Name" />
+      <label>Expiry Date:</label>
+      <input type="text" id="expiry" placeholder="MM/YY" />
+      <label>CVV:</label>
+      <input type="number" id="cvv" placeholder="123" />
+    </div>
+
+    <div id="upiFields" class="hidden">
+      <label>Enter UPI ID:</label>
+      <input type="text" id="upiId" placeholder="example@upi" />
+    </div>
+
+    <div id="netBankingFields" class="hidden">
+      <label>Select Bank:</label>
+      <select id="bank">
+        <option value="">-- Select Bank --</option>
+        <option value="sbi">State Bank of India</option>
+        <option value="hdfc">HDFC Bank</option>
+        <option value="icici">ICICI Bank</option>
+        <option value="axis">Axis Bank</option>
+      </select>
+    </div>
+
+    <button onclick="submitPayment()">Pay Now</button>
+  </div>
+
+  <script>
+    document.getElementById("paymentMode").addEventListener("change", function () {
+      const mode = this.value;
+      document.getElementById("cardFields").classList.add("hidden");
+      document.getElementById("upiFields").classList.add("hidden");
+      document.getElementById("netBankingFields").classList.add("hidden");
+
+      if (mode === "credit" || mode === "debit") {
+        document.getElementById("cardFields").classList.remove("hidden");
+      } else if (mode === "upi") {
+        document.getElementById("upiFields").classList.remove("hidden");
+      } else if (mode === "netbanking") {
+        document.getElementById("netBankingFields").classList.remove("hidden");
+      }
+    });
+
+    function submitPayment() {
+      const mode = document.getElementById("paymentMode").value;
+      let isValid = false;
+
+      if (mode === "credit" || mode === "debit") {
+        const cardNumber = document.getElementById("cardNumber").value.trim();
+        const cardHolder = document.getElementById("cardHolder").value.trim();
+        const expiry = document.getElementById("expiry").value.trim();
+        const cvv = document.getElementById("cvv").value.trim();
+        if (cardNumber && cardHolder && expiry && cvv) isValid = true;
+      } else if (mode === "upi") {
+        const upiId = document.getElementById("upiId").value.trim();
+        if (upiId) isValid = true;
+      } else if (mode === "netbanking") {
+        const bank = document.getElementById("bank").value;
+        if (bank) isValid = true;
+      }
+
+      if (!isValid) {
+        alert("⚠️ Please fill all required payment fields.");
+        return;
+      }
+
+      // Redirect to success page with data passed via URL
+      const url = `/successfull?movie={{ movie | urlencode }}&seats={{ seats | urlencode }}&showtime={{ time | urlencode }}&location={{ location | urlencode }}`;
+      window.location.href = url;
+    }
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

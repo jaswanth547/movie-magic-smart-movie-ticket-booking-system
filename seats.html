@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Seat Booking - Smart Movie Booking</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #141e30, #243b55);
+      color: #fff;
+      padding: 40px;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #ffc107;
+    }
+
+    .screen {
+      background: #ccc;
+      height: 40px;
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      text-align: center;
+      line-height: 40px;
+      color: #222;
+      font-weight: bold;
+    }
+
+    .seating-area {
+      display: flex;
+      gap: 50px;
+      margin-bottom: 30px;
+    }
+
+    .section {
+      display: grid;
+      gap: 10px;
+    }
+
+    .left {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .middle {
+      grid-template-columns: repeat(6, 1fr);
+    }
+
+    .right {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .seat {
+      width: 40px;
+      height: 40px;
+      border-radius: 6px;
+      background-color: #4caf50;
+      cursor: pointer;
+      transition: transform 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    .seat:hover {
+      transform: scale(1.1);
+    }
+
+    .seat.booked {
+      background-color: #f44336;
+      cursor: not-allowed;
+    }
+
+    .seat.selected {
+      background-color: #2196f3;
+    }
+
+    .legend-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .legend {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 20px;
+    }
+
+    .legend div {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .legend .box {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+    }
+
+    .available { background: #4caf50; }
+    .booked { background: #f44336; }
+    .selected { background: #2196f3; }
+
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: bold;
+      background-color: #ffc107;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #e0a800;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Select Your Seats</h2>
+  <form action="{{ url_for('confirm') }}" method="POST">
+    <input type="hidden" name="movie" value="{{ movie }}">
+    <input type="hidden" name="location" value="{{ location }}">
+    <input type="hidden" name="time" value="{{ time }}">
+    <input type="hidden" name="price" value="{{ price }}">
+    <input type="hidden" name="seats" id="selectedSeatsInput">
+    <div class="screen">SCREEN</div>
+    <div class="seating-area">
+     <div class="section left" id="leftSection"></div>
+     <div class="section middle" id="middleSection"></div>
+     <div class="section right" id="rightSection"></div>
+    </div>
+    <div class="legend-container">
+      <div class="legend">
+        <div><div class="box available"></div> Available</div>
+        <div><div class="box booked"></div> Booked</div>
+        <div><div class="box selected"></div> Selected</div>
+      </div>
+      <button type="submit">Confirm Booking</button>
+    </div>
+  </form>
+  <script>
+    const totalSeats = 112;
+    const bookedCount = 50;
+    const bookedIndexes = [];
+
+    while (bookedIndexes.length < bookedCount) {
+      const rand = Math.floor(Math.random() * totalSeats);
+      if (!bookedIndexes.includes(rand)) {
+        bookedIndexes.push(rand);
+      }
+    }
+
+    let seatNumber = 1;
+    function createSeat(index, parent) {
+      const seat = document.createElement('div');
+      seat.classList.add('seat');
+      seat.innerText = seatNumber;
+      seat.setAttribute('title', `Seat ${seatNumber}`);
+      if (bookedIndexes.includes(index)) {
+        seat.classList.add('booked');
+      }
+      parent.appendChild(seat);
+      seatNumber++;
+    }
+
+    const leftSection = document.getElementById('leftSection');
+    const middleSection = document.getElementById('middleSection');
+    const rightSection = document.getElementById('rightSection');
+
+    // Left: 32 seats
+    for (let i = 0; i < 32; i++) createSeat(i, leftSection);
+
+    // Middle: 48 seats
+    for (let i = 32; i < 80; i++) createSeat(i, middleSection);
+
+    // Right: 32 seats
+    for (let i = 80; i < 112; i++) createSeat(i, rightSection);
+
+    // Enable seat selection
+    const seats = document.querySelectorAll('.seat:not(.booked)');
+    seats.forEach(seat => {
+      seat.addEventListener('click', () => {
+        seat.classList.toggle('selected');
+      });
+    });
+
+    // Confirm booking
+    // Confirm booking
+
+    document.querySelector('form').addEventListener('submit', function(event) {      
+      const selectedSeats = document.querySelectorAll('.seat.selected');
+      if (selectedSeats.length === 0) {
+        alert('Please select at least one seat.');
+        event.preventDefault();  // prevent form submission
+        return;
+      }      
+      const seatNumbers = Array.from(selectedSeats).map(seat => seat.innerText).join(',');      
+      document.getElementById('selectedSeatsInput').value = seatNumbers;
+    });
+
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

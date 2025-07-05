@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Available Theaters - Smart Movie Booking</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #141e30, #243b55);
+      color: #fff;
+      padding: 40px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #ffc107;
+    }
+
+    .theater-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .theater-card {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      transition: transform 0.3s;
+    }
+
+    .theater-card:hover {
+      transform: scale(1.02);
+    }
+
+    .theater-name {
+      font-size: 22px;
+      font-weight: bold;
+      color: #4dd0e1;
+    }
+
+    .location {
+      font-size: 14px;
+      margin-bottom: 20px;
+      color: #ccc;
+    }
+
+    .screen-list {
+      display: grid;
+      gap: 15px;
+    }
+
+    .screen-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .screen-title {
+      font-size: 18px;
+      margin-bottom: 5px;
+      color: #ffc107;
+    }
+
+    .movie-name {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .timings {
+      margin: 10px 0;
+    }
+
+    .timing-btn {
+      background: #ff9800;
+      border: none;
+      color: white;
+      padding: 8px 12px;
+      margin: 5px 5px 0 0;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s;
+    }
+
+    .timing-btn:hover {
+      background: #f57c00;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Select a Theater and Screen</h2>
+
+  <div class="theater-grid">
+
+    <!-- Phoenix Mall -->
+    <div class="theater-card">
+      <div class="theater-name">Phoenix Mall</div>
+      <div class="location">Grand Trunk Road, Nagarampalem, Guntur</div>
+      <div class="screen-list">
+
+        <div class="screen-card">
+          <div class="screen-title">Screen 1</div>
+          <div class="movie-name">Kubera (250rs)</div>
+          <div class="timings">
+            <a href="/seats?movie=Kubera&price=250&time=9:00 AM&location=Phoenix Mall" class="timing-btn">9:00 AM</a>
+            <a href="/seats?movie=Kubera&price=250&time=1:00 PM&location=Phoenix Mall" class="timing-btn">1:00 PM</a>
+            <a href="/seats?movie=Kubera&price=250&time=5:00 PM&location=Phoenix Mall" class="timing-btn">5:00 PM</a>
+            <a href="/seats?movie=Kubera&price=250&time=9:00 PM&location=Phoenix Mall" class="timing-btn">9:00 PM</a>
+          </div>
+        </div>
+
+        <div class="screen-card">
+          <div class="screen-title">Screen 2</div>
+          <div class="movie-name">Salaar (200rs)</div>
+          <div class="timings">
+            <a href="/seats?movie=Salaar&price=200&time=9:00 AM&location=Phoenix Mall" class="timing-btn">9:00 AM</a>
+            <a href="/seats?movie=Salaar&price=200&time=1:00 PM&location=Phoenix Mall" class="timing-btn">1:00 PM</a>
+            <a href="/seats?movie=Salaar&price=200&time=5:00 PM&location=Phoenix Mall" class="timing-btn">5:00 PM</a>
+            <a href="/seats?movie=Salaar&price=200&time=9:00 PM&location=Phoenix Mall" class="timing-btn">9:00 PM</a>
+          </div>
+        </div>
+
+        <div class="screen-card">
+          <div class="screen-title">Screen 3</div>
+          <div class="movie-name">Lucky Bhaskar (200rs)</div>
+          <div class="timings">
+            <a href="/seats?movie=Lucky Bhaskar&price=200&time=9:00 AM&location=Phoenix Mall" class="timing-btn">9:00 AM</a>
+            <a href="/seats?movie=Lucky Bhaskar&price=200&time=1:00 PM&location=Phoenix Mall" class="timing-btn">1:00 PM</a>
+            <a href="/seats?movie=Lucky Bhaskar&price=200&time=5:00 PM&location=Phoenix Mall" class="timing-btn">5:00 PM</a>
+            <a href="/seats?movie=Lucky Bhaskar&price=200&time=9:00 PM&location=Phoenix Mall" class="timing-btn">9:00 PM</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- V Plateno Cinemas -->
+    <div class="theater-card">
+      <div class="theater-name">V Plateno Cinemas</div>
+      <div class="location">Chandramouli Nagar, Guntur</div>
+      <div class="screen-list">
+
+        <div class="screen-card">
+          <div class="screen-title">Screen 1</div>
+          <div class="movie-name">Kubera (250rs)</div>
+          <div class="timings">
+            <a href="/seats?movie=Kubera&price=250&time=9:00 AM&location=V Plateno Cinemas" class="timing-btn">9:00 AM</a>
+            <a href="/seats?movie=Kubera&price=250&time=1:00 PM&location=V Plateno Cinemas" class="timing-btn">1:00 PM</a>
+            <a href="/seats?movie=Kubera&price=250&time=5:00 PM&location=V Plateno Cinemas" class="timing-btn">5:00 PM</a>
+            <a href="/seats?movie=Kubera&price=250&time=9:00 PM&location=V Plateno Cinemas" class="timing-btn">9:00 PM</a>
+          </div>
+        </div>
+
+        <div class="screen-card">
+          <div class="screen-title">Screen 2</div>
+          <div class="movie-name">Daaku Maharaj (250rs)</div>
+          <div class="timings">
+            <a href="/seats?movie=Daaku Maharaj&price=250&time=9:00 AM&location=V Plateno Cinemas" class="timing-btn">9:00 AM</a>
+            <a href="/seats?movie=Daaku Maharaj&price=250&time=1:00 PM&location=V Plateno Cinemas" class="timing-btn">1:00 PM</a>
+            <a href="/seats?movie=Daaku Maharaj&price=250&time=5:00 PM&location=V Plateno Cinemas" class="timing-btn">5:00 PM</a>
+            <a href="/seats?movie=Daaku Maharaj&price=250&time=9:00 PM&location=V Plateno Cinemas" class="timing-btn">9:00 PM</a>
+          </div>
+        </div>
+
+        <div class="screen-card">
+          <div class="screen-title">Screen 3</div>
+          <div class="movie-name">Mad 2 (175rs)</div>
+          <div class="timings">
+            <a href="/seats?movie=Mad 2&price=175&time=9:00 AM&location=V Plateno Cinemas" class="timing-btn">9:00 AM</a>
+            <a href="/seats?movie=Mad 2&price=175&time=1:00 PM&location=V Plateno Cinemas" class="timing-btn">1:00 PM</a>
+            <a href="/seats?movie=Mad 2&price=175&time=5:00 PM&location=V Plateno Cinemas" class="timing-btn">5:00 PM</a>
+            <a href="/seats?movie=Mad 2&price=175&time=9:00 PM&location=V Plateno Cinemas" class="timing-btn">9:00 PM</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- Bhaskar Cinemas -->
+    <div class="theater-card">
+      <div class="theater-name">Bhaskar Cinemas</div>
+      <div class="location">Naaz center road, Guntur</div>
+      <div class="screen-list">
+       <div class="screen-card">        
+         <div class="screen-title">Screen 1</div>
+         <div class="movie-name">Lucky Bhaskar (200rs)</div>
+         <div class="timings">
+           <a href="/seats?movie=Lucky Bhaskar&price=200&time=9:00 AM&location=Bhaskar Cinemas" class="timing-btn">9:00 AM</a>
+           <a href="/seats?movie=Lucky Bhaskar&price=200&time=1:00 PM&location=Bhaskar Cinemas" class="timing-btn">1:00 PM</a>
+           <a href="/seats?movie=Lucky Bhaskar&price=200&time=5:00 PM&location=Bhaskar Cinemas" class="timing-btn">5:00 PM</a>
+           <a href="/seats?movie=Lucky Bhaskar&price=200&time=9:00 PM&location=Bhaskar Cinemas" class="timing-btn">9:00 PM</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gowri Sankar -->
+    <div class="theater-card">
+     <div class="theater-name">Gowri Sankar</div>
+     <div class="location">Kothapet, Guntur</div>     
+     <div class="screen-list">      
+      <div class="screen-card">                
+        <div class="screen-title">Screen 1</div>
+        <div class="movie-name">Pushpa 2 (200rs)</div>        
+        <div class="timings">          
+          <a href="/seats?movie=Pushpa 2&price=200&time=9:00 AM&location=Gowri Sankar" class="timing-btn">9:00 AM</a>
+          <a href="/seats?movie=Pushpa 2&price=200&time=1:00 PM&location=Gowri Sankar" class="timing-btn">1:00 PM</a>
+          <a href="/seats?movie=Pushpa 2&price=200&time=5:00 PM&location=Gowri Sankar" class="timing-btn">5:00 PM</a>
+          <a href="/seats?movie=Pushpa 2&price=200&time=9:00 PM&location=Gowri Sankar" class="timing-btn">9:00 PM</a>
+        </div>
+      </div>
+     </div>
+    </div>
+
+    <!-- Hariharmahal -->
+    <div class="theater-card">
+    <div class="theater-name">Hariharmahal</div>
+    <div class="location">Koritepadu rd, Guntur</div>
+      <div class="screen-list">        
+        <div class="screen-card">
+         <div class="screen-title">Screen 1</div>
+         <div class="movie-name">Naayak (175rs)</div>
+         <div class="timings">
+           <a href="/seats?movie=Naayak&price=175&time=9:00 AM&location=Hariharmahal" class="timing-btn">9:00 AM</a>
+           <a href="/seats?movie=Naayak&price=175&time=1:00 PM&location=Hariharmahal" class="timing-btn">1:00 PM</a>
+           <a href="/seats?movie=Naayak&price=175&time=5:00 PM&location=Hariharmahal" class="timing-btn">5:00 PM</a>
+           <a href="/seats?movie=Naayak&price=175&time=9:00 PM&location=Hariharmahal" class="timing-btn">9:00 PM</a>
+         </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hollywood Theater -->
+    <div class="theater-card">
+    <div class="theater-name">Hollywood Theater</div>
+    <div class="location">Lakshmipuram, Guntur</div>
+      <div class="screen-list">
+       <div class="screen-card">
+         <div class="screen-title">Screen 1</div>
+         <div class="movie-name">Single (175rs)</div>
+         <div class="timings">
+           <a href="/seats?movie=Single&price=175&time=9:00 AM&location=Hollywood Theater" class="timing-btn">9:00 AM</a>
+           <a href="/seats?movie=Single&price=175&time=1:00 PM&location=Hollywood Theater" class="timing-btn">1:00 PM</a>
+           <a href="/seats?movie=Single&price=175&time=5:00 PM&location=Hollywood Theater" class="timing-btn">5:00 PM</a>
+           <a href="/seats?movie=Single&price=175&time=9:00 PM&location=Hollywood Theater" class="timing-btn">9:00 PM</a>
+         </div>
+       </div>
+      </div>
+    </div>      
+  </div>
+  <a href="{{ url_for('seats', movie=movie, time=showtime, price=price, location=location) }}">Book Now</a>
+</body>
+</html>
